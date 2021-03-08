@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 
 import { Canvas } from "react-three-fiber";
@@ -7,6 +7,8 @@ import SpinningMesh from "./components/spinningMesh";
 
 // Optionnal softsShadow
 import { softShadows, OrbitControls } from "@react-three/drei";
+
+import Boy from "./components/Boy";
 
 // Optionnal
 softShadows();
@@ -41,28 +43,32 @@ const App = () => {
             <meshStandardMaterial attach="material" color={"yellow"} />
             {/* <shadowMaterial attach="material" /> */}
           </mesh>
-        <SpinningMesh
-          position={[0, 1, 0]}
-          args={[3, 2, 1]}
-          color="lightblue"
-          speed={10}
-          factor={0.6}
-        />
-        <SpinningMesh
-          position={[-2, 1, -5]}
-          color="hotpink"
-          speed={1}
-          factor={0.6}
-        />
-        <SpinningMesh
-          position={[5, 1, -2]}
-          color="hotpink"
-          speed={1}
-          factor={0.6}
-        />
+          <SpinningMesh
+            position={[0, 1, 0]}
+            args={[3, 2, 1]}
+            color="lightblue"
+            speed={10}
+            factor={0.6}
+          />
+          <SpinningMesh
+            position={[-2, 1, -5]}
+            color="hotpink"
+            speed={1}
+            factor={0.6}
+          />
+          <SpinningMesh
+            position={[5, 1, -2]}
+            color="hotpink"
+            speed={1}
+            factor={0.6}
+          />
+          <Suspense fallback={null}>
+            <Boy position={[0, -3, -10]} castShadow />
+          </Suspense>
         </group>
 
-        <OrbitControls/>
+        <OrbitControls />
+        {/* <axesHelper /> */}
       </Canvas>
     </>
   );
